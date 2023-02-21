@@ -1,27 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Info = () => {
-  const [form, setForm] = useState({
-    name: "",
-    nickname: "",
-  });
-  const onChange = (e) => {
-    const nextForm = { ...form };
-    nextForm[e.target.name] = e.target.value;
-    setForm(nextForm);
+  const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
+  useEffect(() => {
+    console.log("마운트될 때만 실행됩니다.");
+  }, []);
+  const onChangeName = (e) => {
+    setName(e.target.value);
+  };
+  const onChangeNickname = (e) => {
+    setNickname(e.target.value);
   };
   return (
     <div>
       <div>
-        <input name="name" value={form.name} onChange={onChange} />
-        <input name="nickname" value={form.nickname} onChange={onChange} />
+        <input value={name} onChange={onChangeName} />
+        <input value={nickname} onChange={onChangeNickname} />
       </div>
       <div>
         <div>
-          <b>이름:</b> {form.name}
+          <b>이름:</b> {name}
         </div>
         <div>
-          <b>닉네임:</b> {form.nickname}
+          <b>닉네임:</b> {nickname}
         </div>
       </div>
     </div>
